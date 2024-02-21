@@ -13,11 +13,7 @@ import { uploadFile } from './util/uploadFile.js'
 const app = express();
 
 
-app.use(
-  cors({
-    origin: "191.156.235.144:5173",
-    credentials: true,
-  }));
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
