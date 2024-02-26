@@ -90,7 +90,15 @@ export const login = async (req, res) => {
       });
     }
 
-   
+    const token = await createAccessToken({ id: userFound._id });
+
+    // Establecer la cookie con los parámetros adecuados
+    res.cookie("token", token, { 
+      httpOnly: true, 
+      secure: true, 
+      sameSite: "None",
+      domain: ".vercel.app"
+    });
 
     res.json({
       Message: "Usuario encontrado ",
@@ -108,6 +116,7 @@ export const login = async (req, res) => {
     res.status(500).json({ Message: error.Message });
   }
 };
+
 
 export const logout = (req, res) => {
   res.cookie("token", "", {
