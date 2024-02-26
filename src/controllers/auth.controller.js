@@ -97,7 +97,7 @@ export const login = async (req, res) => {
       httpOnly: true, 
       secure: true, 
       sameSite: "None",
-      domain: ".vercel.app"
+      domain: ".backend-horizons.vercel.app"
     });
 
     res.json({
