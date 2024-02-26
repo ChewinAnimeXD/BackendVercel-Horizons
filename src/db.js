@@ -9,3 +9,4 @@ export const connectDB = async () => {
     }
 };
 
+//mongodb+srv://horizons:74182391@cluster0.l0gx2hi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
