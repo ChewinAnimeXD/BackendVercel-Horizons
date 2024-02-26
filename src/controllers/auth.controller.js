@@ -5,9 +5,6 @@ import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 import { uploadFile } from '../util/uploadFile.js'; // Asegúrate de importar la función para cargar archivos
 
-
-
-
 export const register = async (req, res) => {
   const { username, phone, identificationNumber, role, programs, email, password} = req.body;
   
@@ -96,7 +93,6 @@ export const login = async (req, res) => {
     const token = await createAccesToken({ id: userFound._id });
     res.cookie("token", token);
 
-    res.cookie("token", token);
     res.json({
       Message: "Usuario encontrado ",
       id: userFound._id,
