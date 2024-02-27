@@ -8,13 +8,10 @@ import calificationsRoutes from "./routes/califications.routes.js";
 import cors from "cors";
 import { upload } from "./multer.js";
 import { user } from "./models/user.js";
-import { uploadFile } from './util/uploadFile.js'
-
-import jwt from 'jsonwebtoken';
-import { TOKEN_SECRET } from './config.js';
+import { uploadFile } from './util/uploadFile.js';
+import { authRequired } from './middlewares/validateToken.js'; // Importa el middleware authRequired
 
 const app = express();
-
 
 app.use(
   cors({
@@ -26,23 +23,15 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
-export const authRequired = (req, res, next) => {
-    const { token } = req.cookies;
-    console.log("token", token)
-    if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
+app.use("/api", authRoutes); // Rutas de autenticación
+app.use("/api", taskRoutes); // Rutas de tareas
+app.use("/api", coursesRoutes); // Rutas de cursos
+app.use("/api", calificationsRoutes); // Rutas de calificaciones
 
-    jwt.verify(token, TOKEN_SECRET, (err, user) => {
-        if(err) return res.status(403).json({ message: "Token inválido"});
-
-        req.user = user
-        next()
-    })
-};
-
-app.use("/api", authRoutes);
-app.use("/api", taskRoutes);
-app.use("/api", coursesRoutes);
-app.use("/api", calificationsRoutes);
+// Protege las rutas que requieren autenticación
+app.use("/api/tasks", authRequired, taskRoutes);
+app.use("/api/courses", authRequired, coursesRoutes);
+app.use("/api/califications", authRequired, calificationsRoutes);
 
 app.post(
   "/api/create-user",
