@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 export const authRequired = (req, res, next) => {
     const { token } = Cookies.get;
-    console.log()
+    console.log(token)
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
