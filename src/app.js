@@ -9,6 +9,7 @@ import cors from "cors";
 import { upload } from "./multer.js";
 import { user } from "./models/user.js";
 import { uploadFile } from './util/uploadFile.js'
+import Task from "./models/task.model.js";
 
 const app = express();
 app.use(cookieParser());
@@ -27,6 +28,16 @@ app.use("/api", authRoutes);
 app.use("/api", taskRoutes);
 app.use("/api", coursesRoutes);
 app.use("/api", calificationsRoutes);
+
+app.get(
+  "/api/tasks", async (req, res) => {
+    try {
+      const tasks = await Task.find({ user: req.user.id });
+    }catch (error) {
+      res.status(400).json({ message: 'ocurrio un error', error })
+    }
+  }
+)
 
 app.post(
   "/api/create-user",
