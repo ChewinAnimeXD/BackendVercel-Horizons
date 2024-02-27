@@ -13,9 +13,7 @@ export function createAccesToken(payload) {
         },
 
         (err, token) => {
-            console.log("token",token)
             if(err) reject(err)
-            console.log("token2",token)
             resolve(token)              
             }
         );
