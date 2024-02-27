@@ -102,7 +102,7 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    
+    console.log("EL TOKEN",token)
     res.cookie("token", token);
     
     res.json({
