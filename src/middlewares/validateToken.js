@@ -6,11 +6,10 @@ export const authRequired = (req, res, next) => {
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
-    if (token !== "undefined") {
-        // Si el token no es "undefined", significa que es inválido
-        return res.status(403).json({ message: "Token invalido" });
-    }
+    jwt.verify(token, TOKEN_SECRET, (err, user) => {
+        if(err) return res.status(403).json({ message: "Token invalido"});
 
-    // Si el token es "undefined", continúa con la ejecución
-    next();
+        req.user = user
+        next()
+    })
 };
