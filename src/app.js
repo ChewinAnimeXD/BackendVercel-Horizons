@@ -33,6 +33,7 @@ app.get(
   "/api/tasks", async (req, res) => {
     try {
       const tasks = await Task.find({ user: req.user.id });
+    res.json(tasks);
     }catch (error) {
       res.status(400).json({ message: 'ocurrio un error', error })
     }
