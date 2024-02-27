@@ -90,9 +90,8 @@ export const login = async (req, res) => {
       });
     }
 
-    const payload = { id: userFound._id };
-    const token = jwt.sign(payload, process.env.TOKEN_SECRET)
-    res.cookie("jwt", token)
+    const token = await createAccesToken({ id: userFound._id });
+    res.cookie("token", token);
     
     res.json({
       Message: "Usuario encontrado ",
