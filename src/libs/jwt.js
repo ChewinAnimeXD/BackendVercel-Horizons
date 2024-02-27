@@ -11,12 +11,9 @@ export function createAccesToken(payload) {
             expiresIn: "1d",
         },
 
-        
-
         (err, token) => {
             if(err) reject(err)
-            resolve(token)
-        res.cookie("tokensito" ,token)              
+            resolve(token)              
             }
         );
     })
