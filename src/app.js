@@ -35,7 +35,7 @@ app.get(
       const tasks = await Task.find({ user: req.user.id });
     res.json(tasks);
     }catch (error) {
-      res.status(400).json({ message: 'ocurrio un error', error })
+      res.status(400).json({ message: 'ha ocurrido un error no puede ser', error })
     }
   }
 )
