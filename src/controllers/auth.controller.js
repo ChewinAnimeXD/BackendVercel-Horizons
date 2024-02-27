@@ -81,7 +81,7 @@ export const login = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ email });
-    
+
     if (!userFound)
       return res.status(400).json({
         message: ["El correo no existe"],
@@ -96,7 +96,9 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
+    console.log("este es el token:", token)
     res.cookie("token", token);
+    
     
     res.json({
       Message: "Usuario encontrado ",
