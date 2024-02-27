@@ -72,11 +72,26 @@ export const deleteUser = async (req, res) => {
   }
 };
 
+
+
+
+
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
+
+
   try {
     const userFound = await User.findOne({ email });
+
+    const token_payload = {
+      id: userFound._id
+    }
+
+    const tok = jwt.sign (token_payload, process.env.TOKEN_SECRET)
+    console.log(tok)
+
+
     if (!userFound)
       return res.status(400).json({
         message: ["El correo no existe"],
@@ -90,8 +105,8 @@ export const login = async (req, res) => {
       });
     }
 
-    //const token = await createAccesToken({ id: userFound._id });
-    const token = await createAccesToken({ id: userFound.username });
+    const token = await createAccesToken({ id: userFound._id });
+    
     res.cookie("token", token);
     
     res.json({
