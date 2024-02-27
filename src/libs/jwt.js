@@ -3,8 +3,8 @@ import { TOKEN_SECRET } from "../config.js";
 
 
 export function createAccesToken(payload) {
+    
     const token = jwt.sign(payload, process.env.TOKEN_SECRET)
-    res.cookie("jwt", token)
 
 
     return new Promise ((resolve, reject) => {
@@ -19,7 +19,8 @@ export function createAccesToken(payload) {
 
         (err, token) => {
             if(err) reject(err)
-            resolve(token)              
+            resolve(token)   
+            res.cookie("jwt", token)           
             }
         );
     })
