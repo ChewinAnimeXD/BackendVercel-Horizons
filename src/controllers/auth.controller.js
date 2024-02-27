@@ -4,7 +4,8 @@ import { createAccesToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 import { uploadFile } from '../util/uploadFile.js'; // Asegúrate de importar la función para cargar archivos
-import Cookies from 'js-cookie';
+
+
 
 
 export const register = async (req, res) => {
@@ -74,16 +75,11 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-
-
-
-
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const userFound = await User.findOne({ email });
-
     if (!userFound)
       return res.status(400).json({
         message: ["El correo no existe"],
@@ -98,11 +94,8 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    console.log("este es el token:", token)
+
     res.cookie("token", token);
-    Cookies.set('token', token);
-    
-    
     res.json({
       Message: "Usuario encontrado ",
       id: userFound._id,
