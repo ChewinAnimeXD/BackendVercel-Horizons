@@ -90,9 +90,23 @@ export const login = async (req, res) => {
       });
     }
 
-    const token = await createAccesToken({ id: userFound._id });
-    res.cookie("token", token);
+   // const token = await createAccesToken({ id: userFound._id });
+    //res.cookie("token", token);
     
+
+
+    jwt.sign(
+      {id: userFound._id,
+      },
+      "secret123",
+      {expiresIn: "1d",
+    },
+    (err, token) => {
+      if (err) console.log(err);
+      res.json ({token});
+    }
+    )
+
     res.json({
       Message: "Usuario encontrado ",
       id: userFound._id,
