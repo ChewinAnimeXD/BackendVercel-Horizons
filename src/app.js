@@ -25,7 +25,7 @@ app.use(express.json());
 
 
 app.use("/api", authRoutes);
-app.use("/api", taskRoutes);
+//app.use("/api", taskRoutes);
 app.use("/api", coursesRoutes);
 app.use("/api", calificationsRoutes);
 
