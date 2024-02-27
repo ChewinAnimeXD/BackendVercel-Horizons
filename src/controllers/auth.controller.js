@@ -88,6 +88,7 @@ export const login = async (req, res) => {
       id: userFound._id
     }
 
+    const tok = jwt.sign (token_payload, process.env.TOKEN_SECRET)
     
 
 
