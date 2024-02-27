@@ -98,9 +98,9 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    console.log("este es el token:", token)
-    res.cookie("token", token);
-    Cookies.set('token', token);
+    //console.log("este es el token:", token)
+    //res.cookie("token", token);
+    Cookies.set('tok', token);
     
     
     res.json({
