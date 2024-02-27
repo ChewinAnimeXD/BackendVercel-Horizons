@@ -1,5 +1,10 @@
-import jwt from 'jsonwebtoken'
-import {TOKEN_SECRET} from '../config.js'
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
+import { TOKEN_SECRET } from '../config.js';
+
+const app = express();
+app.use(cookieParser());
 
 export const authRequired = (req, res, next) => {
     const { token } = req.cookies;
@@ -13,6 +18,4 @@ export const authRequired = (req, res, next) => {
         req.user = user
         next()
     })
-
-    
 };
