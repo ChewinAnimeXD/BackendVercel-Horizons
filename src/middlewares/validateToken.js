@@ -3,7 +3,7 @@ import {TOKEN_SECRET} from '../config.js'
 
 export const authRequired = (req, res, next) => {
     const { token } = req.cookies;
-    console.log("el maldito token", token)
+    console.log("token", token)
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {

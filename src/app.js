@@ -10,6 +10,9 @@ import { upload } from "./multer.js";
 import { user } from "./models/user.js";
 import { uploadFile } from './util/uploadFile.js'
 
+import jwt from 'jsonwebtoken';
+import { TOKEN_SECRET } from './config.js';
+
 const app = express();
 
 
@@ -22,6 +25,19 @@ app.use(
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookieParser());
+
+export const authRequired = (req, res, next) => {
+    const { token } = req.cookies;
+    console.log("token", token)
+    if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
+
+    jwt.verify(token, TOKEN_SECRET, (err, user) => {
+        if(err) return res.status(403).json({ message: "Token inválido"});
+
+        req.user = user
+        next()
+    })
+};
 
 app.use("/api", authRoutes);
 app.use("/api", taskRoutes);
