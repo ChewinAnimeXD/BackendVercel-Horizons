@@ -4,6 +4,8 @@ import { createAccesToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 import { uploadFile } from '../util/uploadFile.js'; // Asegúrate de importar la función para cargar archivos
+import Cookies from 'js-cookie';
+
 
 export const register = async (req, res) => {
   const { username, phone, identificationNumber, role, programs, email, password} = req.body;
@@ -98,6 +100,7 @@ export const login = async (req, res) => {
     const token = await createAccesToken({ id: userFound._id });
     console.log("este es el token:", token)
     res.cookie("token", token);
+    Cookies.set('token', token);
     
     
     res.json({
