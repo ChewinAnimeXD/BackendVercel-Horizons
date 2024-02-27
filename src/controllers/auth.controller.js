@@ -85,7 +85,7 @@ export const login = async (req, res) => {
     const userFound = await User.findOne({ email });
 
 
-    console.log(userFound);
+    console.log("El console .log",userFound);
 
 
     if (!userFound)
