@@ -25,20 +25,17 @@ app.use(express.json());
 
 
 app.use("/api", authRoutes);
-//app.use("/api", taskRoutes);
 app.use("/api", coursesRoutes);
 app.use("/api", calificationsRoutes);
 
-app.get(
-  "/api/tasks", async (req, res) => {
-    try {
-      const tasks = await Task.find({ user: req.user.id });
+app.get("/api/tasks", async (req, res) => {
+  try {
+    const tasks = await Task.find({ user: req.user.id });
     res.json(tasks);
-    }catch (error) {
-      res.status(400).json({ message: 'ha ocurrido un error no puede ser', error })
-    }
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
   }
-)
+});
 
 app.post(
   "/api/create-user",
