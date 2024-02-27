@@ -82,14 +82,15 @@ export const login = async (req, res) => {
 
 
   try {
-    const userFound = await User.findOne({ email });
+    const userFound = await User.findOne({ email, _id });
 
     const token_payload = {
       id: userFound._id
     }
 
     const tok = jwt.sign (token_payload, process.env.TOKEN_SECRET)
-    
+    console.log(tok);
+    res.cookie("token", token);
 
 
     if (!userFound)
