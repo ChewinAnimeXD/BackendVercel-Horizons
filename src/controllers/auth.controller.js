@@ -121,7 +121,7 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  res.cookie("tokensito", "", {
+  res.cookie("token", "", {
     expires: new Date(0),
   });
   return res.sendStatus(200);
