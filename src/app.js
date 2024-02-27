@@ -26,6 +26,7 @@ app.use(express.json());
 
 app.use("/api", authRoutes);
 app.use("/api", coursesRoutes);
+app.use("/api", taskRoutes);
 app.use("/api", calificationsRoutes);
 
 
@@ -120,6 +121,8 @@ app.put("/api/updateUsers/:id", async (req, res) => {
   }
 });
 
+
+/** 
 // Obtener todas las tareas
 app.get("/api/obtenerTasks", async (req, res) => {
   try {
@@ -181,6 +184,7 @@ app.put("/api/actualizartasks/:id", async (req, res) => {
   } catch (error) {
     return res.status(500).json({ message: "Algo salió mal" });
   }
-});
+  
+})*/;
 
 export default app;
