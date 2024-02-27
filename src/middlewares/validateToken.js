@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken'
 import {TOKEN_SECRET} from '../config.js'
+import Cookies from "js-cookie";
 
 export const authRequired = (req, res, next) => {
-    const { token } = req.cookies;
+    const { token } = Cookies.get;
+    console.log()
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
