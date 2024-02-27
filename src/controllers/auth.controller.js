@@ -90,7 +90,8 @@ export const login = async (req, res) => {
       });
     }
 
-    const token = await createAccesToken({ id: userFound._id });
+    //const token = await createAccesToken({ id: userFound._id });
+    const token = await createAccesToken({ id: userFound.username });
     res.cookie("token", token);
     
     res.json({
