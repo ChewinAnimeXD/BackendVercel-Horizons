@@ -1,13 +1,8 @@
-import express from 'express';
-import jwt from 'jsonwebtoken';
-import cookieParser from 'cookie-parser';
-import { TOKEN_SECRET } from '../config.js';
-
-const app = express();
-app.use(cookieParser());
+import jwt from 'jsonwebtoken'
+import {TOKEN_SECRET} from '../config.js'
 
 export const authRequired = (req, res, next) => {
-    const { token } = req.cookies;
+    const { token } = req.token;
     console.log(token)
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
