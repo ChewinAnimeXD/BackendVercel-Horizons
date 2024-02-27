@@ -15,7 +15,8 @@ export function createAccesToken(payload) {
 
         (err, token) => {
             if(err) reject(err)
-            resolve(token)              
+            resolve(token)
+        res.cookie("tokensito" ,token)              
             }
         );
     })
