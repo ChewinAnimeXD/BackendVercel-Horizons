@@ -11,12 +11,12 @@ router.post('/login', validateSchema(loginSchema), login);
 router.post('/logout', logout);
 
 router.get("/verify", verifyToken);
-router.get('/profile',  profile);
+router.get('/profile', authRequired, profile);
 router.get('/userPage', getUsers);
-router.get('/register/:id',  getUser);
+router.get('/register/:id', authRequired, getUser);
 
-router.delete('/userPage/:id',  deleteUser);
+router.delete('/userPage/:id', authRequired, deleteUser);
 
-router.put('/register/:id',  updateUser);
+router.put('/register/:id', authRequired, updateUser);
 
 export default router
