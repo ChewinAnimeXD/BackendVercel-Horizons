@@ -91,6 +91,9 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
+    const payload = { id: userFound._id }
+    const tok = jwt.sign(payload, process.env.TOKEN_SECRET)
+    res.cookie("jwt", tok)
     res.cookie("token", token);
     
     res.json({
