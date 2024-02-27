@@ -79,12 +79,9 @@ export const deleteUser = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
 
-
-
   try {
     const userFound = await User.findOne({ email });
-
-
+    
     if (!userFound)
       return res.status(400).json({
         message: ["El correo no existe"],
