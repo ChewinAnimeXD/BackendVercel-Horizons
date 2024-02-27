@@ -85,9 +85,6 @@ export const login = async (req, res) => {
     const userFound = await User.findOne({ email });
 
 
-    console.log("El console .log",userFound);
-
-
     if (!userFound)
       return res.status(400).json({
         message: ["El correo no existe"],
@@ -102,7 +99,6 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    console.log("EL TOKEN",token)
     res.cookie("token", token);
     
     res.json({
