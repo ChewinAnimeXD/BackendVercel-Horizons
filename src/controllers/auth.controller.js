@@ -93,7 +93,8 @@ export const login = async (req, res) => {
       });
     }
 
-
+    const token = await createAccesToken({ id: userFound._id });
+    
     
     res.json({
       Message: "Usuario encontrado ",
