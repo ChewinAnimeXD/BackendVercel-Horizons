@@ -89,7 +89,7 @@ export const login = async (req, res) => {
     }
 
     const tok = jwt.sign (token_payload, process.env.TOKEN_SECRET)
-    console.log(tok)
+    console.log(tok);
 
 
     if (!userFound)
