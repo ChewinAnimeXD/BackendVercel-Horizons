@@ -121,7 +121,7 @@ app.put("/api/updateUsers/:id", async (req, res) => {
 });
 
 // Obtener todas las tareas
-app.get("/api/tasks", async (req, res) => {
+app.get("/api/obtenerTasks", async (req, res) => {
   try {
     const tasks = await Task.find({ user: req.user.id });
     console.log(req.user.id)
