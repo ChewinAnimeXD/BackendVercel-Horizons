@@ -124,7 +124,7 @@ app.put("/api/updateUsers/:id", async (req, res) => {
 app.get("/api/obtenerTasks", async (req, res) => {
   try {
     const tasks = await Task.find({ user: req.user.id });
-    console.log(req.user.id)
+    console.log("tareas? ",req.user.id)
     res.json(tasks);
   } catch (error) {
     return res.status(500).json({ message: error.message });
