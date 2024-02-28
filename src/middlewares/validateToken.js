@@ -7,13 +7,17 @@ const app = express();
 app.use(cookieParser());
 
 export const authRequired = (req, res, next) => {
-    const token = req.cookies.token; // Cambio aquí
-    console.log("este es el token de authrequired", token)
+    const token = req.cookies.token;
+
+    console.log("Valor de la cookie 'token':", token);
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {
-        if(err) return res.status(403).json({ message: "Token invalido"});
+        if(err) {
+            console.error("Error al verificar el token:", err); // Agrega este registro
+            return res.status(403).json({ message: "Token invalido"});
+        }
 
         req.user = user;
         next();
