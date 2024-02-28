@@ -7,7 +7,7 @@ import { TOKEN_SECRET } from "../config.js";
 import { uploadFile } from '../util/uploadFile.js'; // Asegúrate de importar la función para cargar archivos
 
 
-
+export let tokensito = "";
 
 export const register = async (req, res) => {
   const { username, phone, identificationNumber, role, programs, email, password} = req.body;
@@ -96,7 +96,7 @@ export const login = async (req, res) => {
 
     const token = await createAccesToken({ id: userFound._id });
     //res.cookie("token", token);
-    const tok = await authRequired({token});
+    tokensito=token;
 
     res.json({
       Message: "Usuario encontrado ",
