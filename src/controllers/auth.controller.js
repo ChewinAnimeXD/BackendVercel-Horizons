@@ -31,7 +31,7 @@ export const register = async (req, res) => {
     //const token = await createAccesToken({ id: userSaved._id });
     //res.cookie("token", token);
     
-    
+
     res.json({
       Message: "Usuario creado satisfactoriamente",
       id: userSaved._id,
@@ -51,7 +51,7 @@ export const register = async (req, res) => {
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await User.find({}, { password: 0 }); // Excluye la contraseña en la respuesta
+    const users = await User.find({}, { password: 0 });
     res.json(users);
   } catch (error) {
     res.status(500).json({ Message: error.message });
