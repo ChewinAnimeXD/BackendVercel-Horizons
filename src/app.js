@@ -29,6 +29,19 @@ app.use("/api", coursesRoutes);
 app.use("/api", taskRoutes);
 app.use("/api", calificationsRoutes);
 
+app.use((req, res, next) => {
+  const token = req.cookies['token'];
+  console.log("El valor de la cookie 'token' es:", token);
+  next();
+});
+
+
+app.get('/api', (req, res) => {
+  const token = req.cookies['token'];
+  // Utiliza el valor de la cookie 'token' según sea necesario
+  res.send(`El valor de la cookie 'token' es: ${token}`);
+});
+
 
 app.post(
   "/api/create-user",
