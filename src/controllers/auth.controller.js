@@ -186,3 +186,5 @@ export const updateUser = async (req, res) => {
     return res.status(404).json({ message: "Usuario no encontrado" });
   }
 };
+
+
