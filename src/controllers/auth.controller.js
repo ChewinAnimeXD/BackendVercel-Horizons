@@ -101,7 +101,8 @@ export const login = async (req, res) => {
     
     // Aquí actualizamos el documento del usuario en la base de datos
     await User.findByIdAndUpdate(userFound._id, { token });
-    tokensito=userFound.token;
+    
+    
 
     res.json({
       Message: "Usuario encontrado ",
@@ -116,6 +117,10 @@ export const login = async (req, res) => {
       createdAt: userFound.createdAt,
       updateAt: userFound.updatedAt,
     });
+
+    tokensito=userFound.token;
+
+
   } catch (error) {
     res.status(500).json({ Message: error.Message });
   }
