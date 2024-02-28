@@ -94,7 +94,8 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    //res.cookie("token", token);
+    // Enviar el token al archivo validate token
+    req.token = token;
 
     res.json({
       Message: "Usuario encontrado ",
@@ -113,6 +114,7 @@ export const login = async (req, res) => {
     res.status(500).json({ Message: error.Message });
   }
 };
+
 
 export const logout = (req, res) => {
   res.cookie("token", "", {
