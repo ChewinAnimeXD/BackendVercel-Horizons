@@ -96,6 +96,7 @@ export const login = async (req, res) => {
 
     const token = await createAccesToken({ id: userFound._id });
     //res.cookie("token", token);
+    localStorage.setItem('token', token);
     tokensito=token;
 
     res.json({
