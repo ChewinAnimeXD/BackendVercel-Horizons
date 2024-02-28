@@ -100,6 +100,11 @@ export const login = async (req, res) => {
     const token = await createAccesToken({ id: userFound._id });
     tokensito=token;
 
+    res.cookie('token', token, { 
+      httpOnly: true, // La cookie solo es accesible mediante HTTP (no a través de JavaScript)
+      secure: true // La cookie solo se enviará sobre HTTPS
+    });
+
     //res.cookie("token", token);
     res.json({
       Message: "Usuario encontrado ",
