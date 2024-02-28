@@ -9,6 +9,7 @@ import { uploadFile } from '../util/uploadFile.js'; // Asegúrate de importar la
 
 export let tokensito = "";
 
+
 export const register = async (req, res) => {
   const { username, phone, identificationNumber, role, programs, email, password} = req.body;
   
@@ -97,11 +98,9 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    //res.cookie("token", token);
-    
     tokensito=token;
 
-    
+    //res.cookie("token", token);
     res.json({
       Message: "Usuario encontrado ",
       id: userFound._id,
@@ -111,7 +110,7 @@ export const login = async (req, res) => {
       role: userFound.role,
       programs: userFound.programs,
       email: userFound.email,
-      token: token,
+      token:token,
       createdAt: userFound.createdAt,
       updateAt: userFound.updatedAt,
     });
