@@ -16,10 +16,18 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: true,
+    origin: (origin, callback) => {
+      // Si no se proporciona un origen (como en las solicitudes CORS simples), o si el origen es permitido, permitimos la solicitud
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
+
 app.use(morgan("dev"));
 app.use(express.json());
 
