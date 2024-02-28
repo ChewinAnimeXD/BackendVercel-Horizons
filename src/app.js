@@ -14,19 +14,10 @@ import Task from "./models/task.model.js";
 const app = express();
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Si no se proporciona un origen (como en las solicitudes CORS simples), o si el origen es permitido, permitimos la solicitud
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: 'https://horizons-front.vercel.app', // Permitir solicitudes solo desde este origen
+  credentials: true // Permitir incluir credenciales en las solicitudes (por ejemplo, cookies)
+}));
 
 app.use(morgan("dev"));
 app.use(express.json());
