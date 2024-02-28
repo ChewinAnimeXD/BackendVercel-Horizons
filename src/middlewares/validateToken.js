@@ -1,3 +1,11 @@
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import cookieParser from 'cookie-parser';
+import { TOKEN_SECRET } from '../config.js';
+
+const app = express();
+app.use(cookieParser());
+
 export const authRequired = (req, res, next) => {
     const cookiesString = req.headers.cookie; // Obtener la cadena de cookies de la cabecera
     if (!cookiesString) return res.status(401).json({ Message: "No hay cookies, autorización denegada" });
@@ -23,3 +31,4 @@ export const authRequired = (req, res, next) => {
         next();
     });
 };
+
