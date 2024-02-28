@@ -14,11 +14,12 @@ import Task from "./models/task.model.js";
 const app = express();
 app.use(cookieParser());
 
-app.use(cors({
-  origin: 'https://horizons-front.vercel.app', // Permitir solicitudes solo desde este origen
-  credentials: true // Permitir incluir credenciales en las solicitudes (por ejemplo, cookies)
-}));
-
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+);
 app.use(morgan("dev"));
 app.use(express.json());
 
