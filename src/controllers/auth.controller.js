@@ -98,16 +98,11 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    tokensito=token;
+    
+    // Aquí actualizamos el documento del usuario en la base de datos
+    await User.findByIdAndUpdate(userFound._id, { token });
+    tokensito=userFound.token;
 
-    //res.cookie('token', token, { 
-      //httpOnly: true, // La cookie solo es accesible mediante HTTP (no a través de JavaScript)
-      //secure: true // La cookie solo se enviará sobre HTTPS
-    //});
-
-
-
-    //res.cookie("token", token);
     res.json({
       Message: "Usuario encontrado ",
       id: userFound._id,
@@ -117,7 +112,7 @@ export const login = async (req, res) => {
       role: userFound.role,
       programs: userFound.programs,
       email: userFound.email,
-      token:token,
+      token: userFound.token,
       createdAt: userFound.createdAt,
       updateAt: userFound.updatedAt,
     });
