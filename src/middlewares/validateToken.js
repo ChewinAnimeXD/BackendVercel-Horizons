@@ -6,8 +6,9 @@ import { TOKEN_SECRET } from '../config.js';
 const app = express();
 app.use(cookieParser());
 
-export const authRequired = (req, res, next) => {
-    const token = req.token; // Obtener el token desde la solicitud
+export const authRequired = (req, res, next, token) => {
+    console.log(token)
+
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {

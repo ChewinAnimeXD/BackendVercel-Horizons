@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { createAccesToken } from "../libs/jwt.js";
+import { authRequired } from "../middlewares/validateToken.js"
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 import { uploadFile } from '../util/uploadFile.js'; // Asegúrate de importar la función para cargar archivos
@@ -94,8 +95,8 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    // Enviar el token al archivo validate token
-    req.token = token;
+    //res.cookie("token", token);
+    const tok = await authRequired({token});
 
     res.json({
       Message: "Usuario encontrado ",
@@ -114,7 +115,6 @@ export const login = async (req, res) => {
     res.status(500).json({ Message: error.Message });
   }
 };
-
 
 export const logout = (req, res) => {
   res.cookie("token", "", {
