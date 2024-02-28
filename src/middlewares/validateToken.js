@@ -7,8 +7,8 @@ const app = express();
 app.use(cookieParser());
 
 export const authRequired = (req, res, next) => {
-    const token = req.cookies; // Cambio aquí
-    console.log(req.cookies)
+    const token = req.signedCookies.token;
+    console.log(token)
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada " });
 
