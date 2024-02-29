@@ -106,12 +106,10 @@ export const login = async (req, res) => {
 
     tokensito=token;
 
-    res.cookie('TokenBack', token, {
+    res.cookie('tokenB', TokenBack, {
       httpOnly: true, // Accesible solo desde el servidor
       secure: true, // Solo en conexiones seguras (https)
       });
-
-
     
 
     res.json({
