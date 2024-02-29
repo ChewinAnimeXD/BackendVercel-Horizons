@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: 'https://horizons-front.vercel.app/',
+    origin: true,
     credentials: true,
   })
 );
