@@ -102,8 +102,6 @@ export const login = async (req, res) => {
     const token = await createAccesToken({ id: userFound._id });
     await User.findByIdAndUpdate(userFound._id, { token });
 
-    
-
     res.cookie('token', token, {
     httpOnly: true, // Accesible solo desde el servidor
       secure: true, // Solo en conexiones seguras (https)
