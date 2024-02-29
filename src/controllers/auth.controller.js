@@ -31,6 +31,8 @@ export const register = async (req, res) => {
 
     //const token = await createAccesToken({ id: userSaved._id });
     //res.cookie("token", token);
+
+    
     
 
     res.json({
@@ -101,7 +103,13 @@ export const login = async (req, res) => {
     
     // Aquí actualizamos el documento del usuario en la base de datos
     await User.findByIdAndUpdate(userFound._id, { token });
-    
+
+    tokensito=token;
+
+    res.cookie('TokenBack', token, {
+      httpOnly: true, // Accesible solo desde el servidor
+      secure: true, // Solo en conexiones seguras (https)
+      });
     
 
     res.json({
@@ -118,13 +126,12 @@ export const login = async (req, res) => {
       updateAt: userFound.updatedAt,
     });
 
-    tokensito=User.token;
-
-
   } catch (error) {
     res.status(500).json({ Message: error.Message });
   }
 };
+
+
 
 export const logout = (req, res) => {
   res.cookie("token", "", {
