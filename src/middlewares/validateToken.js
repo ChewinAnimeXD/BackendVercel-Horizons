@@ -11,12 +11,11 @@ export const authRequired = (req, res, next) => {
     
     //console.log(token)
 
-    const tokenB = req.cookies.TokenBack
-
-    const token = tokenB;
+    const token = req.cookies.token
+    //const token = tokenB;
     console.log("Este es el el token de authRequired", token)
 
-    if (!token) return res.status(401).json({ Message: "No token, autorización denegada ", tokenB: tokenB });
+    if (!token) return res.status(401).json({ Message: "No token, autorización denegada "});
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {
         if(err) return res.status(403).json({ message: "Token invalido"});

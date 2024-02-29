@@ -106,10 +106,18 @@ export const login = async (req, res) => {
 
     tokensito=token;
 
-    res.cookie('tokenB', token, {
-      httpOnly: true, // Accesible solo desde el servidor
+    res.cookie('token', token, {
+    //httpOnly: true, // Accesible solo desde el servidor
       secure: true, // Solo en conexiones seguras (https)
       });
+
+      //res.setHeader('Authorization', 'Bearer ' + token);
+
+    // En lugar de establecer la cookie, envía el token como un header
+//res.set('TokenBack', token);
+
+// Envía una respuesta con el token adjunto como header
+//res.send('TokenBack: ' + token);
     
 
     res.json({
