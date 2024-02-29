@@ -8,8 +8,7 @@ import cookieParser from "cookie-parser";
 //app.use(cookieParser());
 
 export const authRequired = (req, res, next) => {
-    
-    
+
     const token = req.cookies.token;
     console.log("Este es el token de authrequired",token);
 

@@ -14,12 +14,11 @@ import Task from "./models/task.model.js";
 const app = express();
 app.use(cookieParser());
 
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: "https://horizons-front.vercel.app",
+  credentials: true
+}));
+
 app.use(morgan("dev"));
 app.use(express.json());
 
