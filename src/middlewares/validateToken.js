@@ -10,7 +10,7 @@ import cookieParser from "cookie-parser";
 export const authRequired = async (req, res, next) => {
 
     //const token = req.headers.authorization;
-    console.log(req)
+    console.log("el request",req)
     const token = req.cookies.token;
     console.log("Este es el token de authrequired",token);
 
