@@ -14,7 +14,7 @@ export const authRequired = async (req, res, next) => {
     const token = req.cookies.token;
     console.log("Este es el token de authrequired",token);
 
-    if (!token) return res.status(401).json({ Message: "No token, autorización denegada "});
+    if (!token) return res.status(401).json({ Message: "No token, autorización denegada ", request:req});
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {
         if(err) return res.status(403).json({ message: "Token invalido"});
