@@ -10,8 +10,8 @@ import cookieParser from "cookie-parser";
 export const authRequired = async (req, res, next) => {
 
     //const token = req.headers.authorization;
-    console.log("el request",req)
-    const token = req.cookies.token;
+ 
+    const token = req.headers.autentification
     console.log("Este es el token de authrequired",token);
 
     if (!token) return res.status(401).json({ Message: "No token, autorización denegada ", request:req});
