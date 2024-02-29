@@ -100,25 +100,19 @@ export const login = async (req, res) => {
     }
 
     const token = await createAccesToken({ id: userFound._id });
-    
-    // Aquí actualizamos el documento del usuario en la base de datos
     await User.findByIdAndUpdate(userFound._id, { token });
 
-    tokensito=token;
+    
 
     res.cookie('token', token, {
-    //httpOnly: true, // Accesible solo desde el servidor
+    httpOnly: true, // Accesible solo desde el servidor
       secure: true, // Solo en conexiones seguras (https)
       });
-
-      //res.setHeader('Authorization', 'Bearer ' + token);
-
-    // En lugar de establecer la cookie, envía el token como un header
-//res.set('TokenBack', token);
-
-// Envía una respuesta con el token adjunto como header
-//res.send('TokenBack: ' + token);
     
+    const tok = req.cookies.token;
+    console.log("El token",tok);
+
+    tokensito=tok;
 
     res.json({
       Message: "Usuario encontrado ",

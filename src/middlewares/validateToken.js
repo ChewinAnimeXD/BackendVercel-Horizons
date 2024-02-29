@@ -11,7 +11,7 @@ export const authRequired = (req, res, next) => {
     
     //console.log(token)
 
-    const token = req.cookies.token
+    const token = tokensito;
     //const token = tokenB;
     console.log("Este es el el token de authRequired", token)
 
