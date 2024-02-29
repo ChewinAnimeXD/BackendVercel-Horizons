@@ -13,7 +13,16 @@ import Task from "./models/task.model.js";
 
 const app = express();
 app.use(cookieParser());
+console.log("HOLA")
+app.get('/api', (req, res) => {
+  // Accede a las cookies enviadas desde el cliente
+   const cookies = req.cookies.token;
+    console.log("Las cookies desde app",cookies);
 
+  // Realiza otras operaciones con las cookies si es necesario
+
+  res.send('Respuesta desde el servidor');
+});
 
 app.use(
   cors({
@@ -57,6 +66,11 @@ app.get("/api/users", async (req, res) => {
   try {
     const users = await user.find().sort({createdAt: -1})
     res.status(200).json({ users })
+
+    const cookies = req.cookies.token;
+    console.log("Las cookies desde app",cookies);
+
+
   } catch (error) {
     res.status(400).json({ message: 'ocurrio un error', error })
   }
