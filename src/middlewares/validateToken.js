@@ -7,8 +7,10 @@ import cookieParser from "cookie-parser";
 //const app = express();
 //app.use(cookieParser());
 
-export const authRequired = (req, res, next) => {
+export const authRequired = async (req, res, next) => {
 
+    //const token = req.headers.authorization;
+    console.log(req)
     const token = req.cookies.token;
     console.log("Este es el token de authrequired",token);
 
