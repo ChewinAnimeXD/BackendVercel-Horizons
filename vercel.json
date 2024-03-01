@@ -13,7 +13,7 @@
       },
         {
           "src": "/tasks",
-          "dest": "/homePage"
+          "dest": "https://horizons-front.vercel.app/homePage"
         }
     ]
 }
