@@ -121,6 +121,4 @@ app.put("/api/updateUsers/:id", async (req, res) => {
   }
 });
 
-;
-
 export default app;
