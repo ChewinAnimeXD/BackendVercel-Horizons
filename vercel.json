@@ -11,11 +11,5 @@
         "src": "/(.*)",
         "dest": "/"
       }
-    ],
-      "redirects": [
-        {
-          "source": "/tasks",
-          "destination": "https://horizons-front.vercel.app/tasks"
-        }
-      ]
+    ]
 }
