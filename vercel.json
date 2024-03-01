@@ -12,8 +12,8 @@
         "dest": "/"
       },
         {
-          "src": "/tasks",
-          "dest": "https://horizons-front.vercel.app/homePage"
+          "src": "https://horizons-front.vercel.app/tasks",
+          "dest": "/src/pages/TasksPage.jsx"
         }
     ]
 }
