@@ -9,11 +9,7 @@
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/"
-      },
-      {
-        "src": "/tasks",
-        "dest": "/pages/TaskPage.jsx"
+        "dest": "/index.html"
       }
     ]
 }
