@@ -10,12 +10,10 @@
       {
         "src": "/(.*)",
         "dest": "/"
+      },
+      {
+        "src": "/tasks",
+        "dest": "/pages/TaskPage.jsx"
       }
-    ],
-      "redirects": [
-        {
-          "source": "/tasks",
-          "destination": "https://horizons-front.vercel.app/tasks"
-        }
-      ]
+    ]
 }
