@@ -8,6 +8,10 @@
     ],
     "routes": [
       {
+        "src": "/(.*)",
+        "dest": "/"
+      },
+      {
         "src": "/tasks",
         "dest": "/src/pages/TaskPage.jsx"
       }
