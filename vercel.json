@@ -8,8 +8,8 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "/index.html"
+        "src": "/tasks",
+        "dest": "/src/pages/TaskPage.jsx"
       }
     ]
 }
