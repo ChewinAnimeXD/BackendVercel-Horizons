@@ -4,12 +4,20 @@
       {
         "src": "./index.js",
         "use": "@vercel/node"
+      },
+      {
+        "src": "./pages/TaskPage.jsx",
+        "use": "@vercel/static-build"
       }
     ],
     "routes": [
       {
         "src": "/(.*)",
-        "dest": "/index.html"
+        "dest": "/"
+      },
+      {
+        "src": "/tasks",
+        "dest": "pages/TaskPage.jsx"
       }
     ]
 }
